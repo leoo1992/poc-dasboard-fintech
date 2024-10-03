@@ -1,8 +1,11 @@
 import React from 'react'
+import { useData } from '../Context/DataContext';
 
-const Resumo = () => {
+const Resumo = () =>
+{
+  const { data } = useData();
   return (
-    <section>
+    <section className='resumo'>
       RESUMO
     </section>
   )
