@@ -1,18 +1,33 @@
-import React from 'react'
-import { useData } from '../Context/DataContext'
-import DateRange from './DateRange';
+import React from "react";
+import DateRange from "./DateRange";
+import Month from "./Month";
+import { useLocation } from "react-router-dom";
 
-const Header = () =>
-{
-  const { data } = useData();
+const Header = () => {
+  const [title, setTitle] = React.useState("Resumo");
 
-  if (!data) return null;
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (location.pathname === "/") {
+      setTitle("Resumo");
+      document.title = "FinTech | Resumo";
+    }
+    if (location.pathname === "/vendas") {
+      document.title = "FinTech | Vendas";
+      setTitle("Vendas");
+    }
+  }, [location.pathname]);
+
   return (
-    <div>
-      HEADER
-      <DateRange/>
-    </div>
-  )
-}
+    <header className="mb">
+      <div className="daterange mb">
+        <DateRange />
+        <h1 className="box bg-3">{title}</h1>
+      </div>
+      <Month />
+    </header>
+  );
+};
 
-export default Header
+export default Header;
