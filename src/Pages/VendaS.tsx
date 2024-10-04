@@ -1,11 +1,19 @@
-import React from 'react'
+import SellItem from "../Components/SellItem";
+import { useData } from "../Context/DataContext";
 
 const VendaS = () => {
-  return (
-    <section>
-      Vendas
-    </section>
-  )
-}
+  const { data } = useData();
 
-export default VendaS
+  if (data === null) return null;
+  return (
+    <ul>
+      {data.map((venda) => (
+        <li key={venda.id}>
+          <SellItem venda={venda} />
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+export default VendaS;
