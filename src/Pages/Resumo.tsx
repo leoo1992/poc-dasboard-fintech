@@ -1,3 +1,4 @@
+import SellGaph from "../Components/SellGaph";
 import { useData } from "../Context/DataContext";
 
 const Resumo = () => {
@@ -28,7 +29,7 @@ const Resumo = () => {
         ))}
       </div>
       <div className="box mb">
-Graficos
+        <SellGaph data={data} />
       </div>
     </section>
   );

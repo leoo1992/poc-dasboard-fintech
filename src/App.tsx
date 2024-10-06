@@ -6,8 +6,27 @@ import Venda from "./Pages/Venda";
 import Header from "./Components/Header";
 import SideNav from "./Components/SideNav";
 import { DataContextProvider } from "./Context/DataContext";
+import React from "react";
 
 function App() {
+  React.useEffect(() => {
+    const originalError = console.error;
+    console.error = (...args) => {
+      if (
+        /Support for defaultProps will be removed from function components/.test(
+          args[0]
+        )
+      ) {
+        return;
+      }
+      originalError.apply(console, args);
+    };
+
+    return () => {
+      console.error = originalError;
+    };
+  }, []);
+
   return (
     <DataContextProvider>
       <BrowserRouter>
